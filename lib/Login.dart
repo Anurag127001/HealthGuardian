@@ -83,10 +83,13 @@ class PatientLoginPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              obscureText: true,
               controller: loginPatientIdController,
               decoration: InputDecoration(
+
                 labelText: "Password",
                 border: OutlineInputBorder(),
+
               ),
             ),
             SizedBox(height: 16.0),
@@ -172,6 +175,7 @@ class DoctorLoginPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              obscureText: true,
               controller: loginUidController,
               decoration: InputDecoration(
                 labelText: "Password",
