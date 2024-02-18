@@ -17,18 +17,18 @@ List<String> patientdetails = [
   'Medical History',
 ];
 
+
 class AESDecryptionPage extends StatefulWidget {
   @override
   _AESDecryptionPageState createState() => _AESDecryptionPageState();
 }
-CollectionReference encryptedDataCollection =
-FirebaseFirestore.instance.collection('Patients');
-TextEditingController emailController = TextEditingController();
-TextEditingController patientIdController = TextEditingController();
-List<String> decryptedDataList = [];
-
 class _AESDecryptionPageState extends State<AESDecryptionPage> {
 
+  CollectionReference encryptedDataCollection =
+  FirebaseFirestore.instance.collection('Patients');
+  TextEditingController emailController = TextEditingController();
+  TextEditingController patientIdController = TextEditingController();
+  List<String> decryptedDataList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,14 +68,25 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
                   backgroundColor: const Color(0xff2F2E40),
                   foregroundColor: Colors.white),
               onPressed: () {
-                // _decryptAndShowData();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RecordsPage()),
-                );
+                _decryptAndShowData();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => RecordsPage()),
+                // );
                 },
               child: Text('Tap to view Records'),
+            ),Expanded(
+              child: ListView.builder(
+                itemCount: decryptedDataList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(patientdetails[index]),
+                    subtitle: Text(decryptedDataList[index]),
+                  );
+                },
+              ),
             ),
+
           ],
         ),
       ),
@@ -132,29 +143,5 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
       // If age is not an integer, decrypt it
       return AESAlgorithm.decryptData(ageData.toString());
     }
-  }
-}
-class RecordsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Records'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: patientdetails.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                title: Text(patientdetails[index]),
-                subtitle: Text(decryptedDataList[index]),
-              ),
-            );
-          },
-        ),
-      ),
-    );
   }
 }

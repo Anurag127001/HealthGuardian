@@ -91,7 +91,8 @@ class Patientpage extends StatelessWidget {
           Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CardItempatient('Prescriptions', 'assets/images/Prescriptions.png', () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>AESDecryptionPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AESDecryptionPage()));
+
 
               }),
               CardItempatient('Records', 'assets/images/Records.png', () {

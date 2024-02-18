@@ -129,7 +129,7 @@ class _EnterPrescriptionDetailsState extends State<EnterPrescriptionDetails> {
               const SizedBox(height: 10),
               _buildTextField(
                 controller: _medicalHistoryController,
-                labelText: 'Medical History',
+                labelText: 'Aadhar number',
                 maxLines: 5,
               ),
               const SizedBox(height: 20),
