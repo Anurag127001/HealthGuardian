@@ -1,9 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'aesAlgorithm.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 
 List<String> patientdetails = [
   'Full Name',
@@ -17,23 +15,21 @@ List<String> patientdetails = [
   'Medical History',
 ];
 
-
 class AESDecryptionPage extends StatefulWidget {
   @override
   _AESDecryptionPageState createState() => _AESDecryptionPageState();
 }
-class _AESDecryptionPageState extends State<AESDecryptionPage> {
 
+class _AESDecryptionPageState extends State<AESDecryptionPage> {
   CollectionReference encryptedDataCollection =
   FirebaseFirestore.instance.collection('Patients');
-  TextEditingController emailController = TextEditingController();
-  TextEditingController patientIdController = TextEditingController();
+  TextEditingController aadharController = TextEditingController();
   List<String> decryptedDataList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffCCCDCC),
-
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
@@ -41,9 +37,9 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
         backgroundColor: const Color(0xff2F2E40),
         title: Text(
           "Your Records",
-          style: GoogleFonts.lato(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
-            textStyle: const TextStyle(color: Colors.white),
+            color: Colors.white,
             fontSize: 25,
           ),
         ),
@@ -54,28 +50,21 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'For Additional Security ReEnter Email'),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: patientIdController,
-              decoration: InputDecoration(labelText: 'For Additional Security ReEnter Password'),
+              controller: aadharController,
+              decoration: InputDecoration(labelText: 'Enter Aadhar Number'),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff2F2E40),
-                  foregroundColor: Colors.white),
+                backgroundColor: const Color(0xff2F2E40),
+                foregroundColor: Colors.white,
+              ),
               onPressed: () {
                 _decryptAndShowData();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => RecordsPage()),
-                // );
-                },
+              },
               child: Text('Tap to view Records'),
-            ),Expanded(
+            ),
+            Expanded(
               child: ListView.builder(
                 itemCount: decryptedDataList.length,
                 itemBuilder: (context, index) {
@@ -86,24 +75,20 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
                 },
               ),
             ),
-
           ],
         ),
       ),
     );
   }
 
-
   Future<void> _decryptAndShowData() async {
-    String enteredEmail = emailController.text.trim();
-    String enteredPatientId = patientIdController.text.trim();
+    String enteredAadharNumber = aadharController.text.trim();
 
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
     await encryptedDataCollection
-        .where('Email', isEqualTo: enteredEmail)
-        .where('Patient ID', isEqualTo: enteredPatientId)
+        .where('Aadhar Number', isEqualTo: enteredAadharNumber)
         .limit(1)
-        .get() as QuerySnapshot<Map<String, dynamic>>; // Specify the type
+        .get() as QuerySnapshot<Map<String, dynamic>>;
 
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic>? encryptedData = querySnapshot.docs.first.data();
@@ -115,21 +100,18 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
           AESAlgorithm.decryptData(encryptedData['Gender'] ?? ''),
           AESAlgorithm.decryptData(encryptedData['Contact Number'] ?? ''),
           encryptedData['Patient ID'] ?? '',
-          enteredEmail,
+          encryptedData['Email'] ?? '',
           AESAlgorithm.decryptData(encryptedData['Address'] ?? ''),
           AESAlgorithm.decryptData(encryptedData['Blood Group'] ?? ''),
           AESAlgorithm.decryptData(encryptedData['Medical History'] ?? ''),
         ]);
-      } else {
-        // Handle case when encryptedData is null
-        // For example, show a snackbar or display a message to the user
       }
 
       setState(() {});
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('No data found for the provided email and patient ID.'),
+          content: Text('No data found for the provided Aadhar number.'),
         ),
       );
     }
@@ -137,10 +119,8 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
 
   String _decryptAge(dynamic ageData) {
     if (ageData is int) {
-      // If age is already an integer, return it as a string
       return ageData.toString();
     } else {
-      // If age is not an integer, decrypt it
       return AESAlgorithm.decryptData(ageData.toString());
     }
   }

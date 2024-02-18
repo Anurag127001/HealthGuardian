@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sampleandro/StaticPage2%20-%20Copy.dart';
 // import 'package:sampleandro/decrypt.dart';
 // import 'package:sampleandro/encrypt.dart';
 // import 'package:sampleandro/firestore.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: UserTypeSelectionPage()
+      home: Static2()
 
     );
   }

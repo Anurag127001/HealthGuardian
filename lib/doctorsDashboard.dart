@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sampleandro/settings.dart';
 import 'EnterPrescriptionData.dart';
+import 'about.dart';
 import 'carditem.dart';
 import 'WritePrescriptionPage.dart';
+import 'helppage.dart';
 
 class Doctorpage extends StatelessWidget {
   const Doctorpage({super.key});
@@ -31,16 +34,17 @@ class Doctorpage extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
+            const DrawerHeader(
                 decoration: BoxDecoration(color: Colors.blueGrey),
                 child: CircleAvatar(
                   backgroundImage: AssetImage("assets/images/patient1.jpg"),
                 )),
             InkWell(
               onTap: () {
-                print("hello");
+                print("About Page");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutPage()));
               },
-              child: Card(
+              child: const Card(
                 child: ListTile(
                   title: Text("About"),
                 ),
@@ -48,9 +52,11 @@ class Doctorpage extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                print("hello");
+                print("Help page");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> HelpPage()));
+
               },
-              child: Card(
+              child: const Card(
                 child: ListTile(
                   title: Text("Helpline"),
                 ),
@@ -58,9 +64,11 @@ class Doctorpage extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                print("hello");
+                print("Settings page");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
+
               },
-              child: Card(
+              child: const Card(
                 child: ListTile(
                   title: Text("Settings"),
                 ),

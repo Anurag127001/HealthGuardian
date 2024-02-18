@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sampleandro/about.dart';
+import 'package:sampleandro/helppage.dart';
+import 'package:sampleandro/patientPrescription.dart';
+import 'package:sampleandro/settings.dart';
 import 'DecryptPatientData.dart';
 
 class Patientpage extends StatelessWidget {
@@ -34,7 +38,8 @@ class Patientpage extends StatelessWidget {
                 )),
             InkWell(
               onTap: () {
-                
+                print("About Page");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -44,7 +49,9 @@ class Patientpage extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                print("hello");
+                print("Help page");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> HelpPage()));
+
               },
               child: const Card(
                 child: ListTile(
@@ -54,7 +61,9 @@ class Patientpage extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                print("hello");
+                print("Settings page");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
+
               },
               child: const Card(
                 child: ListTile(
@@ -65,33 +74,17 @@ class Patientpage extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
+      body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CardItempatient('Checkups', 'assets/images/Checkups.png', () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //   return EnterPrescriptionDetails();
-                //             },
-                //   ),
-                // );
-                },),
+            child:
 
-                CardItempatient('Receipts', 'assets/images/Receipts.png', () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>AESDecryptionPage()));
-
-                }),
-              ],
-            ),
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center,
+          Column(mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CardItempatient('Prescriptions', 'assets/images/Prescriptions.png', () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>AESDecryptionPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>patientPrescriptionPage()));
 
 
               }),
@@ -101,12 +94,18 @@ class Patientpage extends StatelessWidget {
               }),
             ],
           ),
-
+    ),
         ],
       ),
     );
   }
 }
+
+class ShowPrescription {
+
+
+}
+
 
 class CardItempatient extends StatelessWidget {
   final String title;
@@ -143,3 +142,5 @@ class CardItempatient extends StatelessWidget {
     );
   }
 }
+
+
