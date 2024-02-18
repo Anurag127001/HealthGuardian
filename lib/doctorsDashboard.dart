@@ -90,7 +90,7 @@ class Doctorpage extends StatelessWidget {
               }),
 
               CardItem('View Patients', 'assets/images/ViewPatients.png', () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>WritePrescriptionPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AESEncryptionPage()));
 
               }),
             ],
