@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'aesAlgorithm.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'aesAlgorithm.dart';
 
 class EnterPrescriptionDetails extends StatefulWidget {
   @override
@@ -184,7 +185,8 @@ class _EnterPrescriptionDetailsState extends State<EnterPrescriptionDetails> {
     );
   }
 
-  Future<void> _storeEncryptedData(String email, Map<String, dynamic> encryptedData) async {
+  Future<void> _storeEncryptedData(
+      String email, Map<String, dynamic> encryptedData) async {
     await _encryptedDataCollection.doc(email).set(encryptedData);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Data encrypted and saved successfully!'),

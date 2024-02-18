@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'doctorsDashboard.dart';
-
-//import 'HomePage.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: GuidelinesPage(),
-//     );
-//   }
-// }
 
 class GuidelinesPage extends StatefulWidget {
   @override

@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import 'aesAlgorithm.dart'; // Import the AESAlgorithm class
 
 class patientPrescriptionPage extends StatefulWidget {
   @override
-  _patientPrescriptionPageState createState() => _patientPrescriptionPageState();
+  _patientPrescriptionPageState createState() =>
+      _patientPrescriptionPageState();
 }
 
 class _patientPrescriptionPageState extends State<patientPrescriptionPage> {
-  final TextEditingController aadharController = TextEditingController(); // Add Aadhar controller
+  final TextEditingController aadharController =
+      TextEditingController(); // Add Aadhar controller
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,8 @@ class _patientPrescriptionPageState extends State<patientPrescriptionPage> {
             children: [
               TextField(
                 controller: aadharController, // Add Aadhar controller
-                decoration: InputDecoration(labelText: 'Aadhar Number'), // Add Aadhar field
+                decoration: InputDecoration(
+                    labelText: 'Aadhar Number'), // Add Aadhar field
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
@@ -43,7 +47,8 @@ class _patientPrescriptionPageState extends State<patientPrescriptionPage> {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('No prescriptions found for the provided Aadhar number.'),
+                          content: Text(
+                              'No prescriptions found for the provided Aadhar number.'),
                         ),
                       );
                     }
@@ -58,11 +63,20 @@ class _patientPrescriptionPageState extends State<patientPrescriptionPage> {
     );
   }
 
-  Future<List<Map<String, dynamic>>> fetchPrescriptions(String aadharNumber) async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('Patients').where('Aadhar Number', isEqualTo: aadharNumber).get();
+  Future<List<Map<String, dynamic>>> fetchPrescriptions(
+      String aadharNumber) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('Patients')
+        .where('Aadhar Number', isEqualTo: aadharNumber)
+        .get();
     if (querySnapshot.docs.isNotEmpty) {
-      return querySnapshot.docs.first.reference.collection('Prescriptions').get().then((querySnapshot) {
-        return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      return querySnapshot.docs.first.reference
+          .collection('Prescriptions')
+          .get()
+          .then((querySnapshot) {
+        return querySnapshot.docs
+            .map((doc) => doc.data() as Map<String, dynamic>)
+            .toList();
       });
     } else {
       return [];
@@ -100,9 +114,15 @@ class PrescriptionList extends StatelessWidget {
         itemCount: prescriptions.length,
         itemBuilder: (context, index) {
           Map<String, dynamic> prescription = prescriptions[index];
-          String decryptedPrescriptionDetails = AESAlgorithm.decryptData(prescription['prescriptionDetails']) ?? 'Decryption Error';
-          String decryptedCheckupDate = AESAlgorithm.decryptData(prescription['checkupDate']) ?? 'Decryption Error';
-          String decryptedDoctorName = AESAlgorithm.decryptData(prescription['doctorName']) ?? 'Decryption Error';
+          String decryptedPrescriptionDetails =
+              AESAlgorithm.decryptData(prescription['prescriptionDetails']) ??
+                  'Decryption Error';
+          String decryptedCheckupDate =
+              AESAlgorithm.decryptData(prescription['checkupDate']) ??
+                  'Decryption Error';
+          String decryptedDoctorName =
+              AESAlgorithm.decryptData(prescription['doctorName']) ??
+                  'Decryption Error';
           return ListTile(
             title: Text('Prescription Details: $decryptedPrescriptionDetails'),
             subtitle: Column(

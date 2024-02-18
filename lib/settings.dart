@@ -13,7 +13,7 @@ class SettingsPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Color(0xff2F2E40),
           centerTitle: true,
-          title: Text('Settings',style: TextStyle(color: Colors.white)),
+          title: Text('Settings', style: TextStyle(color: Colors.white)),
         ),
         body: SettingsList(),
       ),

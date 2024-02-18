@@ -4,6 +4,7 @@ import 'package:sampleandro/about.dart';
 import 'package:sampleandro/helppage.dart';
 import 'package:sampleandro/patientPrescription.dart';
 import 'package:sampleandro/settings.dart';
+
 import 'DecryptPatientData.dart';
 
 class Patientpage extends StatelessWidget {
@@ -13,7 +14,6 @@ class Patientpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffCCCDCC),
-
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
@@ -39,7 +39,8 @@ class Patientpage extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("About Page");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -50,8 +51,8 @@ class Patientpage extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("Help page");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> HelpPage()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HelpPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -62,8 +63,8 @@ class Patientpage extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("Settings page");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -79,39 +80,37 @@ class Patientpage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:
-
-          Column(mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CardItempatient('Prescriptions', 'assets/images/Prescriptions.png', () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>patientPrescriptionPage()));
-
-
-              }),
-              CardItempatient('Records', 'assets/images/Records.png', () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>AESDecryptionPage()));
-
-              }),
-            ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CardItempatient(
+                    'Prescriptions', 'assets/images/Prescriptions.png', () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => patientPrescriptionPage()));
+                }),
+                CardItempatient('Records', 'assets/images/Records.png', () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AESDecryptionPage()));
+                }),
+              ],
+            ),
           ),
-    ),
         ],
       ),
     );
   }
 }
 
-class ShowPrescription {
-
-
-}
-
+class ShowPrescription {}
 
 class CardItempatient extends StatelessWidget {
   final String title;
   final String imagePath;
   final VoidCallback onTap;
-
 
   CardItempatient(this.title, this.imagePath, this.onTap);
 
@@ -142,5 +141,3 @@ class CardItempatient extends StatelessWidget {
     );
   }
 }
-
-

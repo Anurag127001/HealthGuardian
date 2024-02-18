@@ -1,12 +1,9 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CardItem extends StatelessWidget {
   final String title;
   final String imagePath;
   final VoidCallback onTap;
-
 
   CardItem(this.title, this.imagePath, this.onTap);
 

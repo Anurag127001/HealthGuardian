@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 class Patientlist extends StatefulWidget {
   Patientlist({Key? key}) : super(key: key);
 
@@ -8,20 +9,20 @@ class Patientlist extends StatefulWidget {
 }
 
 class _PatientlistState extends State<Patientlist> {
-
-
-List pat=['patient1','patient2','patient3','PATIENT4','pateitn5'];
+  List pat = ['patient1', 'patient2', 'patient3', 'PATIENT4', 'pateitn5'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(backgroundColor: Colors.greenAccent,
-          title: Text("Patientlist", style: GoogleFonts.lato(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-          )
-      ) ,
+      appBar: AppBar(
+          backgroundColor: Colors.greenAccent,
+          title: Text(
+            "Patientlist",
+            style: GoogleFonts.lato(
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+            ),
+          )),
       drawer: Drawer(
         child: ListView(
           children: [
@@ -76,7 +77,7 @@ List pat=['patient1','patient2','patient3','PATIENT4','pateitn5'];
             ),
           );
         },
-        ),
-      );
+      ),
+    );
   }
 }

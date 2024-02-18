@@ -251,12 +251,11 @@
 // }
 
 
-
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sampleandro/doctorsDashboard.dart';
 import 'package:sampleandro/patientsDashboard.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'carditem.dart';
 
 class UserTypeSelectionPage extends StatelessWidget {
@@ -300,7 +299,8 @@ class UserTypeSelectionPage extends StatelessWidget {
 
 class PatientLoginPage extends StatelessWidget {
   final TextEditingController loginEmailController = TextEditingController();
-  final TextEditingController loginPatientIdController = TextEditingController();
+  final TextEditingController loginPatientIdController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -348,7 +348,8 @@ class PatientLoginPage extends StatelessWidget {
                 foregroundColor: Colors.white,
               ),
               onPressed: () {
-                login(context, 'Patients', loginEmailController.text, loginPatientIdController.text);
+                login(context, 'Patients', loginEmailController.text,
+                    loginPatientIdController.text);
               },
               child: Text('Login'),
             ),
@@ -358,7 +359,8 @@ class PatientLoginPage extends StatelessWidget {
     );
   }
 
-  void login(BuildContext context, String collection, String email, String patientId) async {
+  void login(BuildContext context, String collection, String email,
+      String patientId) async {
     try {
       var result = await FirebaseFirestore.instance
           .collection(collection)
@@ -379,7 +381,8 @@ class PatientLoginPage extends StatelessWidget {
     } catch (e) {
       print('Error during login: $e');
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('An error occurred during login. Please try again later.'),
+        content:
+            Text('An error occurred during login. Please try again later.'),
       ));
     }
   }
@@ -435,7 +438,8 @@ class DoctorLoginPage extends StatelessWidget {
                 foregroundColor: Colors.white,
               ),
               onPressed: () {
-                login(context, 'Doctors', loginNameController.text, loginUidController.text);
+                login(context, 'Doctors', loginNameController.text,
+                    loginUidController.text);
               },
               child: Text('Login'),
             ),
@@ -445,7 +449,8 @@ class DoctorLoginPage extends StatelessWidget {
     );
   }
 
-  void login(BuildContext context, String collection, String name, String uid) async {
+  void login(
+      BuildContext context, String collection, String name, String uid) async {
     try {
       var result = await FirebaseFirestore.instance
           .collection(collection)
@@ -466,7 +471,8 @@ class DoctorLoginPage extends StatelessWidget {
     } catch (e) {
       print('Error during login: $e');
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('An error occurred during login. Please try again later.'),
+        content:
+            Text('An error occurred during login. Please try again later.'),
       ));
     }
   }

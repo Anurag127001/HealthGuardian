@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'StaticPage3.dart';
 
 class Static2 extends StatelessWidget {
@@ -23,13 +24,13 @@ class Static2 extends StatelessWidget {
             PrivacyContainer(
               imagePath: 'assets/images/a1aes.jpg',
               text:
-              "All your data is safeguarded with 256-bit encryption. HealthGuardian employs top-tier security standards to protect your information, ensuring it remains secure.",
+                  "All your data is safeguarded with 256-bit encryption. HealthGuardian employs top-tier security standards to protect your information, ensuring it remains secure.",
             ),
             SizedBox(height: 15),
             PrivacyContainer(
               imagePath: 'assets/images/a2sec.jpg',
               text:
-              "With HealthGuardian, your privacy is paramount. We never compromise on safeguarding your health data, ensuring it remains confidential and secure.",
+                  "With HealthGuardian, your privacy is paramount. We never compromise on safeguarding your health data, ensuring it remains confidential and secure.",
             ),
             SizedBox(height: 15),
             Expanded(
@@ -58,7 +59,9 @@ class PrivacyContainer extends StatelessWidget {
   final String imagePath;
   final String text;
 
-  const PrivacyContainer({Key? key, required this.imagePath, required this.text}) : super(key: key);
+  const PrivacyContainer(
+      {Key? key, required this.imagePath, required this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,6 @@
-
-
 import 'package:flutter/material.dart';
+
 import 'Login.dart';
-import 'StaticPage3.dart';
 
 class Static3 extends StatelessWidget {
   @override
@@ -23,16 +21,16 @@ class Static3 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 15),
-        PrivacyContainer(
+            PrivacyContainer(
               imagePath: 'assets/images/img_5.png',
               text:
-               "We never sell your data to anyone, as we prioritize your privacy and take data protection very seriously.",
+                  "We never sell your data to anyone, as we prioritize your privacy and take data protection very seriously.",
             ),
             SizedBox(height: 15),
-        PrivacyContainer(
+            PrivacyContainer(
               imagePath: 'assets/images/img_4.png',
               text:
-              "Your information shared on HealthGuardian remains confidential. Only you have access to it, and you have full control over who can view it.",
+                  "Your information shared on HealthGuardian remains confidential. Only you have access to it, and you have full control over who can view it.",
             ),
             SizedBox(height: 15),
             Expanded(
@@ -40,7 +38,8 @@ class Static3 extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => UserTypeSelectionPage()),
+                    MaterialPageRoute(
+                        builder: (context) => UserTypeSelectionPage()),
                   );
                 },
                 child: Icon(
@@ -61,7 +60,9 @@ class PrivacyContainer extends StatelessWidget {
   final String imagePath;
   final String text;
 
-  const PrivacyContainer({Key? key, required this.imagePath, required this.text}) : super(key: key);
+  const PrivacyContainer(
+      {Key? key, required this.imagePath, required this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

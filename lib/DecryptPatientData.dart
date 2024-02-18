@@ -1,6 +1,6 @@
-
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import 'aesAlgorithm.dart';
 
 List<String> patientdetails = [
@@ -22,7 +22,7 @@ class AESDecryptionPage extends StatefulWidget {
 
 class _AESDecryptionPageState extends State<AESDecryptionPage> {
   CollectionReference encryptedDataCollection =
-  FirebaseFirestore.instance.collection('Patients');
+      FirebaseFirestore.instance.collection('Patients');
   TextEditingController aadharController = TextEditingController();
   List<String> decryptedDataList = [];
 
@@ -85,10 +85,10 @@ class _AESDecryptionPageState extends State<AESDecryptionPage> {
     String enteredAadharNumber = aadharController.text.trim();
 
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await encryptedDataCollection
-        .where('Aadhar Number', isEqualTo: enteredAadharNumber)
-        .limit(1)
-        .get() as QuerySnapshot<Map<String, dynamic>>;
+        await encryptedDataCollection
+            .where('Aadhar Number', isEqualTo: enteredAadharNumber)
+            .limit(1)
+            .get() as QuerySnapshot<Map<String, dynamic>>;
 
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic>? encryptedData = querySnapshot.docs.first.data();

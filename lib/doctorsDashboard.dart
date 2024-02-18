@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sampleandro/settings.dart';
+
 import 'EnterPrescriptionData.dart';
+import 'WritePrescriptionPage.dart';
 import 'about.dart';
 import 'carditem.dart';
-import 'WritePrescriptionPage.dart';
 import 'helppage.dart';
 
 class Doctorpage extends StatelessWidget {
@@ -16,7 +15,6 @@ class Doctorpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffCCCDCC),
-
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white, //change your color here
@@ -42,7 +40,8 @@ class Doctorpage extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("About Page");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -53,8 +52,8 @@ class Doctorpage extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("Help page");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> HelpPage()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HelpPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -65,8 +64,8 @@ class Doctorpage extends StatelessWidget {
             InkWell(
               onTap: () {
                 print("Settings page");
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()));
               },
               child: const Card(
                 child: ListTile(
@@ -88,26 +87,14 @@ class Doctorpage extends StatelessWidget {
                   return EnterPrescriptionDetails();
                 }));
               }),
-
               CardItem('View Patients', 'assets/images/ViewPatients.png', () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>AESEncryptionPage()));
-
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AESEncryptionPage()));
               }),
             ],
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //
-          //     CardItem('Data Analytics', 'assets/images/DataAnalytics.png', () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => DetailScreen('DataAnalytics')),
-          //       );
-          //     }),
-          //
-          //   ],
-          // ),
         ],
       ),
     );

@@ -1,15 +1,13 @@
-
-
 import 'package:flutter/material.dart';
 
 class HelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Color(0xff2F2E40),
         centerTitle: true,
-        title: Text('Help',style: TextStyle(color: Colors.white)),
+        title: Text('Help', style: TextStyle(color: Colors.white)),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -100,5 +98,3 @@ class HelpOption extends StatelessWidget {
     );
   }
 }
-
-
